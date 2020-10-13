@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * server
  *
- * @author xuxueli 2015-11-24 20:59:49
+ * @author mzj 2015-11-24 20:59:49
  */
 @Slf4j
 public abstract class Server {

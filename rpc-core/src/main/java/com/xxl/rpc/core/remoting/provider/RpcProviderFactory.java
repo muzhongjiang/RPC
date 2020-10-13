@@ -7,11 +7,11 @@ import com.xxl.rpc.core.remoting.net.params.BaseCallback;
 import com.xxl.rpc.core.remoting.net.params.RpcRequest;
 import com.xxl.rpc.core.remoting.net.params.RpcResponse;
 import com.xxl.rpc.core.serialize.Serializer;
-import com.xxl.rpc.core.serialize.impl.HessianSerializer;
+import com.xxl.rpc.core.serialize.impl.JavaSerializer;
 import com.xxl.rpc.core.util.IpUtil;
 import com.xxl.rpc.core.util.NetUtil;
-import com.xxl.rpc.core.util.ThrowableUtil;
 import com.xxl.rpc.core.util.RpcException;
+import com.xxl.rpc.core.util.ThrowableUtil;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * provider
  *
- * @author xuxueli 2015-10-31 22:54:27
+ * @author mzj 2015-10-31 22:54:27
  */
 @Slf4j
 @Data
@@ -33,7 +33,7 @@ public class RpcProviderFactory {
 	// ---------------------- config ----------------------
 
 	private Class<? extends Server> server = NettyServer.class;
-	private Class<? extends Serializer> serializer = HessianSerializer.class;
+	private Class<? extends Serializer> serializer = JavaSerializer.class;
 
 	private int corePoolSize = 60;
 	private int maxPoolSize = 300;

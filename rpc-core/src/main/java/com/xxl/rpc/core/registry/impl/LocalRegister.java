@@ -10,7 +10,7 @@ import java.util.TreeSet;
 /**
  * application registry for "local"
  *
- * @author xuxueli 2018-10-17
+ * @author mzj 2018-10-17
  */
 public class LocalRegister extends Register {
 

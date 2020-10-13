@@ -10,7 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * @author xuxueli 2018-11-25 00:55:31
+ * @author mzj 2018-11-25 00:55:31
  */
 public class BasicHttpUtil {
     private static Logger logger = LoggerFactory.getLogger(BasicHttpUtil.class);

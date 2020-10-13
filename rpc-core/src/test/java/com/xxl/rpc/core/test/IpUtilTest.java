@@ -5,7 +5,7 @@ import com.xxl.rpc.core.util.IpUtil;
 import java.net.UnknownHostException;
 
 /**
- * @author xuxueli 2018-10-23
+ * @author mzj 2018-10-23
  */
 public class IpUtilTest {
 

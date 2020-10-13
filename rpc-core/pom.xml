@@ -25,12 +25,6 @@
 			<version>${netty-all.version}</version>
 		</dependency>
 
-		<!-- hessian -->
-		<dependency>
-			<groupId>com.caucho</groupId>
-			<artifactId>hessian</artifactId>
-			<version>${hessian.version}</version>
-		</dependency>
 
 
 		<!-- ********************** base ********************** -->

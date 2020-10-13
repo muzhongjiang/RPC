@@ -6,8 +6,7 @@ import com.xxl.rpc.core.remoting.net.params.BaseCallback;
 import com.xxl.rpc.core.remoting.net.params.RpcFutureResponse;
 import com.xxl.rpc.core.remoting.net.params.RpcResponse;
 import com.xxl.rpc.core.util.RpcException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +16,10 @@ import java.util.concurrent.*;
 /**
  * rpc invoker factory, init service-registry
  *
- * @author xuxueli 2018-10-19
+ * @author mzj 2018-10-19
  */
+@Slf4j
 public class RpcInvokerFactory {
-    private static Logger logger = LoggerFactory.getLogger(RpcInvokerFactory.class);
 
     // ---------------------- default instance ----------------------
 
@@ -66,7 +65,7 @@ public class RpcInvokerFactory {
                 try {
                     callback.run();
                 } catch (Exception e) {
-                    logger.error(e.getMessage(), e);
+                    log.error(e.getMessage(), e);
                 }
             }
         }
@@ -128,7 +127,7 @@ public class RpcInvokerFactory {
                     }
                 });
             }catch (Exception e) {
-                logger.error(e.getMessage(), e);
+                log.error(e.getMessage(), e);
             }
         } else {
 

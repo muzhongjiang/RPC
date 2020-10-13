@@ -14,7 +14,7 @@ import java.util.*;
  *      a(*)、LFU(Least Frequently Used)：最不经常使用，频率/次数
  *      b、LRU(Least Recently Used)：最近最久未使用，时间
  *
- * @author xuxueli 2018-12-04
+ * @author mzj 2018-12-04
  */
 public class RpcLoadBalanceConsistentHashStrategy extends RpcLoadBalance {
 

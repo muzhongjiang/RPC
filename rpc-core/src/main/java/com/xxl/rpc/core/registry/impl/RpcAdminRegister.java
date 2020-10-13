@@ -3,13 +3,15 @@ package com.xxl.rpc.core.registry.impl;
 import com.xxl.rpc.core.registry.impl.xxlrpcadmin.RpcAdminRegistryClient;
 import com.xxl.rpc.core.registry.impl.xxlrpcadmin.model.RpcAdminRegistryDataParamVO;
 import com.xxl.rpc.core.registry.Register;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
 
 /**
  * application registry for "rpc-admin"
  *
- * @author xuxueli 2018-11-30
+ * @author mzj 2018-11-30
  */
 public class RpcAdminRegister extends Register {
 
@@ -46,7 +48,7 @@ public class RpcAdminRegister extends Register {
 
     @Override
     public boolean registry(Set<String> keys, String value) {
-        if (keys==null || keys.size() == 0 || value==null || value.trim().length()==0) {
+        if (CollectionUtils.isEmpty(keys) || StringUtils.isBlank(value)) {
             return false;
         }
 

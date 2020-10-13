@@ -2,14 +2,14 @@ package com.xxl.rpc.sample.server;
 
 import com.xxl.rpc.core.remoting.net.impl.netty.server.NettyServer;
 import com.xxl.rpc.core.remoting.provider.RpcProviderFactory;
-import com.xxl.rpc.core.serialize.impl.HessianSerializer;
+import com.xxl.rpc.core.serialize.impl.JavaSerializer;
 import com.xxl.rpc.sample.api.DemoService;
 import com.xxl.rpc.sample.server.service.DemoServiceImpl;
 
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author xuxueli 2018-10-21 20:48:40
+ * @author mzj 2018-10-21 20:48:40
  */
 public class RpcServerApplication {
 
@@ -18,7 +18,7 @@ public class RpcServerApplication {
         // init
         RpcProviderFactory providerFactory = new RpcProviderFactory()
                 .setServer(NettyServer.class)
-                .setSerializer(HessianSerializer.class)
+                .setSerializer(JavaSerializer.class)
                 .setCorePoolSize(-1)
                 .setMaxPoolSize(-1)
                 .setIp(null)

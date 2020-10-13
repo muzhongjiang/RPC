@@ -9,7 +9,7 @@ import java.util.concurrent.*;
 /**
  * call back future
  *
- * @author xuxueli 2015-11-5 14:26:37
+ * @author mzj 2015-11-5 14:26:37
  */
 public class RpcFutureResponse implements Future<RpcResponse> {
 

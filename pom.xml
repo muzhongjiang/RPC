@@ -26,7 +26,6 @@
         <maven.test.skip>true</maven.test.skip>
 
         <netty-all.version>4.1.52.Final</netty-all.version>
-        <hessian.version>4.0.63</hessian.version>
 
         <slf4j-api.version>1.7.30</slf4j-api.version>
         <junit.version>4.13</junit.version>

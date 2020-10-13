@@ -7,7 +7,7 @@ import com.xxl.rpc.core.remoting.net.common.ConnectClient;
 /**
  * netty_http client
  *
- * @author xuxueli 2015-11-24 22:25:15
+ * @author mzj 2015-11-24 22:25:15
  */
 public class NettyHttpClient extends Client {
 

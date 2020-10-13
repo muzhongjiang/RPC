@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * netty rpc server
  *
- * @author xuxueli 2015-10-29 18:17:14
+ * @author mzj 2015-10-29 18:17:14
  */
 @Slf4j
 public class NettyServer extends Server {
@@ -43,7 +43,8 @@ public class NettyServer extends Server {
                 final ThreadPoolExecutor serverHandlerPool = ThreadPoolUtil.makeServerThreadPool(
                         NettyServer.class.getSimpleName(),
                         xxlRpcProviderFactory.getCorePoolSize(),
-                        xxlRpcProviderFactory.getMaxPoolSize());
+                        xxlRpcProviderFactory.getMaxPoolSize()
+                );
                 EventLoopGroup bossGroup = new NioEventLoopGroup();
                 EventLoopGroup workerGroup = new NioEventLoopGroup();
 
@@ -56,7 +57,7 @@ public class NettyServer extends Server {
                                 @Override
                                 public void initChannel(SocketChannel channel) throws Exception {
                                     channel.pipeline()
-                                            .addLast(new IdleStateHandler(0,0, Beat.BEAT_INTERVAL*3, TimeUnit.SECONDS))     // beat 3N, close if idle
+                                            .addLast(new IdleStateHandler(0, 0, Beat.BEAT_INTERVAL * 3, TimeUnit.SECONDS))     // beat 3N, close if idle
                                             .addLast(new NettyDecoder(RpcRequest.class, xxlRpcProviderFactory.getSerializerInstance()))
                                             .addLast(new NettyEncoder(RpcResponse.class, xxlRpcProviderFactory.getSerializerInstance()))
                                             .addLast(new NettyServerHandler(xxlRpcProviderFactory, serverHandlerPool));
@@ -81,7 +82,6 @@ public class NettyServer extends Server {
                         log.error(">>>>>>>>>>> rpc remoting server error.", e);
                     }
                 } finally {
-
                     // stop
                     try {
                         serverHandlerPool.shutdown();    // shutdownNow

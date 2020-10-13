@@ -1,7 +1,7 @@
 package com.xxl.rpc.core.remoting.net.params;
 
 /**
- * @author xuxueli 2018-10-19
+ * @author mzj 2018-10-19
  */
 public abstract class BaseCallback {
 

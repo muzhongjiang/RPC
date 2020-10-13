@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * netty_http
  *
- * @author xuxueli 2015-11-24 22:25:15
+ * @author mzj 2015-11-24 22:25:15
  */
 @Slf4j
 public class NettyHttpServer extends Server  {

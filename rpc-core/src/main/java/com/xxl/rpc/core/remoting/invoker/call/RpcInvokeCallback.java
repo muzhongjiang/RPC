@@ -2,7 +2,7 @@ package com.xxl.rpc.core.remoting.invoker.call;
 
 
 /**
- * @author xuxueli 2018-10-23
+ * @author mzj 2018-10-23
  */
 public abstract class RpcInvokeCallback<T> {
 

@@ -8,7 +8,7 @@ import java.util.TreeSet;
 /**
  * application registry
  *
- * @author xuxueli 2018-10-17
+ * @author mzj 2018-10-17
  */
 public abstract class Register {
 

@@ -3,7 +3,7 @@ package com.xxl.rpc.core.registry.impl.xxlrpcadmin.model;
 import java.util.List;
 
 /**
- * @author xuxueli 2018-12-03
+ * @author mzj 2018-12-03
  */
 public class RpcAdminRegistryParamVO {
 

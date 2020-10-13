@@ -8,7 +8,7 @@ import java.lang.reflect.Modifier;
 import java.util.*;
 
 /**
- * @author xuxueli 2018-11-30
+ * @author mzj 2018-11-30
  */
 public class BasicJsonwriter {
     private static Logger logger = LoggerFactory.getLogger(BasicJsonwriter.class);

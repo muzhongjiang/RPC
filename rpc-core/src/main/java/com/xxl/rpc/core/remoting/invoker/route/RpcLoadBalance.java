@@ -7,7 +7,7 @@ import java.util.TreeSet;
  *      a、virtual node：解决不均衡问题
  *      b、hash method replace hashCode：String的hashCode可能重复，需要进一步扩大hashCode的取值范围
  *
- * @author xuxueli 2018-12-04
+ * @author mzj 2018-12-04
  */
 public abstract class RpcLoadBalance {
 

@@ -6,8 +6,7 @@ import com.xxl.rpc.core.remoting.invoker.annotation.RpcReference;
 import com.xxl.rpc.core.remoting.invoker.reference.RpcReferenceBean;
 import com.xxl.rpc.core.remoting.provider.RpcProviderFactory;
 import com.xxl.rpc.core.util.RpcException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
@@ -24,10 +23,10 @@ import java.util.Set;
 /**
  * rpc invoker factory, init service-registry and spring-bean by annotation (for spring)
  *
- * @author xuxueli 2018-10-19
+ * @author mzj 2018-10-19
  */
-public class RpcSpringInvokerFactory extends InstantiationAwareBeanPostProcessorAdapter implements InitializingBean,DisposableBean, BeanFactoryAware {
-    private Logger logger = LoggerFactory.getLogger(RpcSpringInvokerFactory.class);
+@Slf4j
+public class RpcSpringInvokerFactory extends InstantiationAwareBeanPostProcessorAdapter implements InitializingBean, DisposableBean, BeanFactoryAware {
 
     // ---------------------- config ----------------------
 
@@ -75,18 +74,18 @@ public class RpcSpringInvokerFactory extends InstantiationAwareBeanPostProcessor
                     RpcReference rpcReference = field.getAnnotation(RpcReference.class);
 
                     // init reference bean
-                    RpcReferenceBean referenceBean = new RpcReferenceBean();
-                    referenceBean.setClient(rpcReference.client());
-                    referenceBean.setSerializer(rpcReference.serializer());
-                    referenceBean.setCallType(rpcReference.callType());
-                    referenceBean.setLoadBalance(rpcReference.loadBalance());
-                    referenceBean.setIface(iface);
-                    referenceBean.setVersion(rpcReference.version());
-                    referenceBean.setTimeout(rpcReference.timeout());
-                    referenceBean.setAddress(rpcReference.address());
-                    referenceBean.setAccessToken(rpcReference.accessToken());
-                    referenceBean.setInvokeCallback(null);
-                    referenceBean.setInvokerFactory(xxlRpcInvokerFactory);
+                    RpcReferenceBean referenceBean = new RpcReferenceBean()
+                            .setClient(rpcReference.client())
+                            .setSerializer(rpcReference.serializer())
+                            .setCallType(rpcReference.callType())
+                            .setLoadBalance(rpcReference.loadBalance())
+                            .setIface(iface)
+                            .setVersion(rpcReference.version())
+                            .setTimeout(rpcReference.timeout())
+                            .setAddress(rpcReference.address())
+                            .setAccessToken(rpcReference.accessToken())
+                            .setInvokeCallback(null)
+                            .setInvokerFactory(xxlRpcInvokerFactory);
 
 
                     // get proxyObj
@@ -101,7 +100,7 @@ public class RpcSpringInvokerFactory extends InstantiationAwareBeanPostProcessor
                     field.setAccessible(true);
                     field.set(bean, serviceProxy);
 
-                    logger.info(">>>>>>>>>>> rpc, invoker factory init reference bean success. serviceKey = {}, bean.field = {}.{}",
+                    log.info(">>>>>>>>>>> rpc, invoker factory init reference bean success. serviceKey = {}, bean.field = {}.{}",
                             RpcProviderFactory.makeServiceKey(iface.getName(), rpcReference.version()), beanName, field.getName());
 
                     // collection
@@ -117,7 +116,7 @@ public class RpcSpringInvokerFactory extends InstantiationAwareBeanPostProcessor
             try {
                 xxlRpcInvokerFactory.getRegister().discovery(serviceKeyList);
             } catch (Exception e) {
-                logger.error(e.getMessage(), e);
+                log.error(e.getMessage(), e);
             }
         }
 

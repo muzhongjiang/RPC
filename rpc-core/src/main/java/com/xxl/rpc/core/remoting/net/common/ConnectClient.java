@@ -5,17 +5,14 @@ import com.xxl.rpc.core.remoting.invoker.reference.RpcReferenceBean;
 import com.xxl.rpc.core.remoting.net.params.BaseCallback;
 import com.xxl.rpc.core.remoting.net.params.RpcRequest;
 import com.xxl.rpc.core.serialize.Serializer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * @author xuxueli 2018-10-19
+ * @author mzj 2018-10-19
  */
 public abstract class ConnectClient {
-    protected static transient Logger logger = LoggerFactory.getLogger(ConnectClient.class);
 
     // ---------------------- iface ----------------------
 
@@ -35,7 +32,8 @@ public abstract class ConnectClient {
      */
     public static void asyncSend(RpcRequest xxlRpcRequest, String address,
                                  Class<? extends ConnectClient> connectClientImpl,
-                                 final RpcReferenceBean xxlRpcReferenceBean) throws Exception {
+                                 final RpcReferenceBean xxlRpcReferenceBean
+    ) throws Exception {
 
         // client pool	[tips03 : may save 35ms/100invoke if move it to constructor, but it is necessary. cause by ConcurrentHashMap.get]
         ConnectClient clientPool = ConnectClient.getPool(address, connectClientImpl, xxlRpcReferenceBean);
@@ -51,8 +49,7 @@ public abstract class ConnectClient {
 
     private static volatile ConcurrentMap<String, ConnectClient> connectClientMap;        // (static) alread addStopCallBack
     private static volatile ConcurrentMap<String, Object> connectClientLockMap = new ConcurrentHashMap<>();
-    private static ConnectClient getPool(String address, Class<? extends ConnectClient> connectClientImpl,
-                                         final RpcReferenceBean xxlRpcReferenceBean) throws Exception {
+    private static ConnectClient getPool(String address, Class<? extends ConnectClient> connectClientImpl, final RpcReferenceBean xxlRpcReferenceBean) throws Exception {
 
         // init base compont, avoid repeat init
         if (connectClientMap == null) {

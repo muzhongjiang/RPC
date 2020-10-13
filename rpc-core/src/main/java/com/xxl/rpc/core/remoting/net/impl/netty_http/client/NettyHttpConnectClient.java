@@ -16,6 +16,7 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.http.*;
 import io.netty.handler.timeout.IdleStateHandler;
+import lombok.extern.slf4j.Slf4j;
 
 import java.net.URI;
 import java.net.URL;
@@ -24,8 +25,9 @@ import java.util.concurrent.TimeUnit;
 /**
  * netty_http
  *
- * @author xuxueli 2015-11-24 22:25:15
+ * @author mzj 2015-11-24 22:25:15
  */
+@Slf4j
 public class NettyHttpConnectClient extends ConnectClient {
     private static NioEventLoopGroup nioEventLoopGroup;
 
@@ -90,7 +92,7 @@ public class NettyHttpConnectClient extends ConnectClient {
             return;
         }
 
-        logger.debug(">>>>>>>>>>> rpc netty client proxy, connect to server success at host:{}, port:{}", host, port);
+        log.debug(">>>>>>>>>>> rpc netty client proxy, connect to server success at host:{}, port:{}", host, port);
     }
 
     @Override
@@ -107,7 +109,7 @@ public class NettyHttpConnectClient extends ConnectClient {
         if (this.channel!=null && this.channel.isActive()) {
             this.channel.close();		// if this.channel.isOpen()
         }
-        logger.debug(">>>>>>>>>>> rpc netty client close.");
+        log.debug(">>>>>>>>>>> rpc netty client close.");
     }
 
 

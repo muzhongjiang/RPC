@@ -197,7 +197,7 @@ public RpcSpringProviderFactory xxlRpcSpringProviderFactory() {
 
     RpcSpringProviderFactory providerFactory = new RpcSpringProviderFactory();
     providerFactory.setServer(NettyServer.class);
-    providerFactory.setSerializer(HessianSerializer.class);
+    providerFactory.setSerializer(JavaSerializer.class);
     providerFactory.setCorePoolSize(-1);
     providerFactory.setMaxPoolSize(-1);
     providerFactory.setIp(null);
@@ -217,7 +217,7 @@ public RpcSpringProviderFactory xxlRpcSpringProviderFactory() {
 ProviderFactory 参数 | 说明
 --- | ---
 setServer | 服务通讯方案，可选范围：NettyServer（默认）、NettyHttpServer ;
-setSerializer | 序列化方案，可选范围: HessianSerializer（默认）、Hessian1Serializer ;
+setSerializer | 序列化方案，可选范围: JavaSerializer（默认）、Hessian1Serializer ;
 setCorePoolSize | 业务线程池core大小
 setMaxPoolSize | 业务线程是max大小
 ip |  服务方IP，为空自动获取机器IP，支持手动指定
@@ -334,7 +334,7 @@ accessToken | 服务鉴权Token，非空时生效；
 // init
 RpcProviderFactory providerFactory = new RpcProviderFactory();
 providerFactory.setServer(NettyServer.class);
-providerFactory.setSerializer(HessianSerializer.class);
+providerFactory.setSerializer(JavaSerializer.class);
 providerFactory.setCorePoolSize(-1);
 providerFactory.setMaxPoolSize(-1);
 providerFactory.setIp(null);
@@ -364,7 +364,7 @@ providerFactory.stop();
 // init client
 RpcReferenceBean referenceBean = new RpcReferenceBean();
 referenceBean.setClient(NettyClient.class);
-referenceBean.setSerializer(HessianSerializer.class);
+referenceBean.setSerializer(JavaSerializer.class);
 referenceBean.setCallType(CallType.SYNC);
 referenceBean.setLoadBalance(LoadBalance.ROUND);
 referenceBean.setIface(DemoService.class);

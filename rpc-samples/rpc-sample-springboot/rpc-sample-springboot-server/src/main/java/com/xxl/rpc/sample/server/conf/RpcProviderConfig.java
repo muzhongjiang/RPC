@@ -3,7 +3,7 @@ package com.xxl.rpc.sample.server.conf;
 import com.xxl.rpc.core.registry.impl.RpcAdminRegister;
 import com.xxl.rpc.core.remoting.net.impl.netty.server.NettyServer;
 import com.xxl.rpc.core.remoting.provider.impl.RpcSpringProviderFactory;
-import com.xxl.rpc.core.serialize.impl.HessianSerializer;
+import com.xxl.rpc.core.serialize.impl.JavaSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,7 +15,7 @@ import java.util.HashMap;
 /**
  * rpc provider config
  *
- * @author xuxueli 2018-10-19
+ * @author mzj 2018-10-19
  */
 @Configuration
 public class RpcProviderConfig {
@@ -35,7 +35,7 @@ public class RpcProviderConfig {
 
         RpcSpringProviderFactory providerFactory = new RpcSpringProviderFactory();
         providerFactory.setServer(NettyServer.class);
-        providerFactory.setSerializer(HessianSerializer.class);
+        providerFactory.setSerializer(JavaSerializer.class);
         providerFactory.setCorePoolSize(-1);
         providerFactory.setMaxPoolSize(-1);
         providerFactory.setIp(null);

@@ -4,23 +4,23 @@ import com.xxl.rpc.core.serialize.Serializer;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
 /**
  * decoder
  *
- * @author xuxueli 2015-10-29 19:02:36
+ * @author mzj 2015-10-29 19:02:36
  */
+@Slf4j
+@AllArgsConstructor
 public class NettyDecoder extends ByteToMessageDecoder {
 
     private Class<?> genericClass;
     private Serializer serializer;
 
-    public NettyDecoder(Class<?> genericClass, final Serializer serializer) {
-        this.genericClass = genericClass;
-        this.serializer = serializer;
-    }
 
     @Override
     public final void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {

@@ -12,7 +12,7 @@ import java.util.*;
 /**
  * base util for registry
  *
- * @author xuxueli 2018-12-01 21:40:04
+ * @author mzj 2018-12-01 21:40:04
  */
 public class RpcAdminRegistryBaseClient {
     private static Logger logger = LoggerFactory.getLogger(RpcAdminRegistryBaseClient.class);

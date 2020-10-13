@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * request
  *
- * @author xuxueli 2015-10-29 19:39:12
+ * @author mzj 2015-10-29 19:39:12
  */
 @Data
 public class RpcRequest implements Serializable{

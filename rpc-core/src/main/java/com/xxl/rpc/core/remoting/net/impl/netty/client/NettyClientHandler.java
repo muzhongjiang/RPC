@@ -6,24 +6,20 @@ import com.xxl.rpc.core.remoting.net.params.RpcResponse;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.timeout.IdleStateEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * rpc netty client handler
  *
- * @author xuxueli 2015-10-31 18:00:27
+ * @author mzj 2015-10-31 18:00:27
  */
+@Slf4j
+@AllArgsConstructor
 public class NettyClientHandler extends SimpleChannelInboundHandler<RpcResponse> {
-	private static final Logger logger = LoggerFactory.getLogger(NettyClientHandler.class);
-
 
 	private RpcInvokerFactory xxlRpcInvokerFactory;
 	private NettyConnectClient nettyConnectClient;
-	public NettyClientHandler(final RpcInvokerFactory xxlRpcInvokerFactory, NettyConnectClient nettyConnectClient) {
-		this.xxlRpcInvokerFactory = xxlRpcInvokerFactory;
-		this.nettyConnectClient = nettyConnectClient;
-	}
 
 
 	@Override
@@ -35,7 +31,7 @@ public class NettyClientHandler extends SimpleChannelInboundHandler<RpcResponse>
 
 	@Override
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-		logger.error(">>>>>>>>>>> rpc netty client caught exception", cause);
+		log.error(">>>>>>>>>>> rpc netty client caught exception", cause);
 		ctx.close();
 	}
 
@@ -43,10 +39,10 @@ public class NettyClientHandler extends SimpleChannelInboundHandler<RpcResponse>
 	public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
 		if (evt instanceof IdleStateEvent){
 			/*ctx.channel().close();      // close idle channel
-			logger.debug(">>>>>>>>>>> rpc netty client close an idle channel.");*/
+			log.debug(">>>>>>>>>>> rpc netty client close an idle channel.");*/
 
 			nettyConnectClient.send(Beat.BEAT_PING);	// beat N, close if fail(may throw error)
-			logger.debug(">>>>>>>>>>> rpc netty client send beat-ping.");
+			log.debug(">>>>>>>>>>> rpc netty client send beat-ping.");
 
 		} else {
 			super.userEventTriggered(ctx, evt);

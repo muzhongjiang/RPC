@@ -13,7 +13,7 @@ import com.xxl.rpc.core.remoting.net.params.RpcRequest;
 import com.xxl.rpc.core.remoting.net.params.RpcResponse;
 import com.xxl.rpc.core.remoting.provider.RpcProviderFactory;
 import com.xxl.rpc.core.serialize.Serializer;
-import com.xxl.rpc.core.serialize.impl.HessianSerializer;
+import com.xxl.rpc.core.serialize.impl.JavaSerializer;
 import com.xxl.rpc.core.util.ClassUtil;
 import com.xxl.rpc.core.util.RpcException;
 import lombok.Data;
@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * rpc reference bean, use by api
  *
- * @author xuxueli 2015-10-29 20:18:32
+ * @author mzj 2015-10-29 20:18:32
  */
 @Slf4j
 @Data
@@ -41,7 +41,7 @@ public class RpcReferenceBean {
 	// ---------------------- config ----------------------
 
 	private Class<? extends Client> client = NettyClient.class;
-	private Class<? extends Serializer> serializer = HessianSerializer.class;
+	private Class<? extends Serializer> serializer = JavaSerializer.class;
 	private CallType callType = CallType.SYNC;
 	private LoadBalance loadBalance = LoadBalance.ROUND;
 

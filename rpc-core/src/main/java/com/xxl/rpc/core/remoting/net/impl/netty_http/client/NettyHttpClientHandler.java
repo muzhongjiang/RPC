@@ -11,26 +11,22 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.FullHttpResponse;
 import io.netty.handler.codec.http.HttpResponseStatus;
 import io.netty.handler.timeout.IdleStateEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * netty_http
  *
- * @author xuxueli 2015-11-24 22:25:15
+ * @author mzj 2015-11-24 22:25:15
  */
+@Slf4j
+@AllArgsConstructor
 public class NettyHttpClientHandler extends SimpleChannelInboundHandler<FullHttpResponse> {
-    private static final Logger logger = LoggerFactory.getLogger(NettyHttpClientHandler.class);
-
 
     private RpcInvokerFactory xxlRpcInvokerFactory;
     private Serializer serializer;
     private NettyHttpConnectClient nettyHttpConnectClient;
-    public NettyHttpClientHandler(final RpcInvokerFactory xxlRpcInvokerFactory, Serializer serializer, final NettyHttpConnectClient nettyHttpConnectClient) {
-        this.xxlRpcInvokerFactory = xxlRpcInvokerFactory;
-        this.serializer = serializer;
-        this.nettyHttpConnectClient = nettyHttpConnectClient;
-    }
+
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, FullHttpResponse msg) throws Exception {
@@ -59,7 +55,7 @@ public class NettyHttpClientHandler extends SimpleChannelInboundHandler<FullHttp
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         //super.exceptionCaught(ctx, cause);
-        logger.error(">>>>>>>>>>> rpc netty_http client caught exception", cause);
+        log.error(">>>>>>>>>>> rpc netty_http client caught exception", cause);
         ctx.close();
     }
 
@@ -73,10 +69,10 @@ public class NettyHttpClientHandler extends SimpleChannelInboundHandler<FullHttp
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
         if (evt instanceof IdleStateEvent){
             /*ctx.channel().close();      // close idle channel
-            logger.debug(">>>>>>>>>>> rpc netty_http client close an idle channel.");*/
+            log.debug(">>>>>>>>>>> rpc netty_http client close an idle channel.");*/
 
             nettyHttpConnectClient.send(Beat.BEAT_PING);    // beat N, close if fail(may throw error)
-            logger.debug(">>>>>>>>>>> rpc netty_http client send beat-ping.");
+            log.debug(">>>>>>>>>>> rpc netty_http client send beat-ping.");
         } else {
             super.userEventTriggered(ctx, evt);
         }

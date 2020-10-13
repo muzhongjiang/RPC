@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import java.text.MessageFormat;
 
 /**
- * @author xuxueli
+ * @author mzj
  */
 public class DemoServiceImpl implements DemoService {
 	private static Logger logger = LoggerFactory.getLogger(DemoServiceImpl.class);

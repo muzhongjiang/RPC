@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * registry client, auto heatbeat registry info, auto monitor discovery info
  *
- * @author xuxueli 2018-12-01 21:48:05
+ * @author mzj 2018-12-01 21:48:05
  */
 public class RpcAdminRegistryClient {
     private static Logger logger = LoggerFactory.getLogger(RpcAdminRegistryClient.class);

@@ -12,7 +12,7 @@ import java.util.HashMap;
 /**
  * rpc invoker config
  *
- * @author xuxueli 2018-10-19
+ * @author mzj 2018-10-19
  */
 @Slf4j
 @Configuration

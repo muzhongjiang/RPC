@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * rpc provider (for spring)
  *
- * @author xuxueli 2018-10-18 18:09:20
+ * @author mzj 2018-10-18 18:09:20
  */
 public class RpcSpringProviderFactory extends RpcProviderFactory implements ApplicationContextAware, InitializingBean, DisposableBean {
 

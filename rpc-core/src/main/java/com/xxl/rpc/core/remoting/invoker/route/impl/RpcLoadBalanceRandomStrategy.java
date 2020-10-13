@@ -8,7 +8,7 @@ import java.util.TreeSet;
 /**
  * random
  *
- * @author xuxueli 2018-12-04
+ * @author mzj 2018-12-04
  */
 public class RpcLoadBalanceRandomStrategy extends RpcLoadBalance {
 

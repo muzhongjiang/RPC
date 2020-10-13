@@ -9,7 +9,7 @@ import java.net.ServerSocket;
 /**
  * net util
  *
- * @author xuxueli 2017-11-29 17:00:25
+ * @author mzj 2017-11-29 17:00:25
  */
 public class NetUtil {
     private static Logger logger = LoggerFactory.getLogger(NetUtil.class);
@@ -21,6 +21,7 @@ public class NetUtil {
      * @return
      */
     public static int findAvailablePort(int defaultPort) {
+        //向上找：
         int portTmp = defaultPort;
         while (portTmp < 65535) {
             if (!isPortUsed(portTmp)) {
@@ -29,7 +30,9 @@ public class NetUtil {
                 portTmp++;
             }
         }
-        portTmp = defaultPort--;
+
+        //向下找：
+        portTmp = --defaultPort;
         while (portTmp > 0) {
             if (!isPortUsed(portTmp)) {
                 return portTmp;
@@ -51,9 +54,8 @@ public class NetUtil {
         ServerSocket serverSocket = null;
         try {
             serverSocket = new ServerSocket(port);
-            used = false;
         } catch (IOException e) {
-            logger.info(">>>>>>>>>>> rpc, port[{}] is in use.", port);
+            logger.error(">>>>>>>>>>> rpc, port[{}] is in use.", port);
             used = true;
         } finally {
             if (serverSocket != null) {

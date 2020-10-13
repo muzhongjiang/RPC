@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
- * @author xuxueli 2018-10-22 18:31:42
+ * @author mzj 2018-10-22 18:31:42
  */
 public class RpcInvokeFuture implements Future {
 

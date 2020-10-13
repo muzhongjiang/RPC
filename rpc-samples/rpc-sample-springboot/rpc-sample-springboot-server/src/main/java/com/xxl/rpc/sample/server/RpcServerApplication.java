@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @author xuxueli 2018-10-20 13:05:56
+ * @author mzj 2018-10-20 13:05:56
  */
 @SpringBootApplication
 public class RpcServerApplication {

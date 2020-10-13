@@ -3,12 +3,11 @@ package com.xxl.rpc.core.util;
 import java.util.HashMap;
 
 /**
- * @author xuxueli 2019-02-19
+ * @author mzj 2019-02-19
  */
 public class ClassUtil {
 
     private static final HashMap<String, Class<?>> primClasses = new HashMap<>();
-
     static {
         primClasses.put("boolean", boolean.class);
         primClasses.put("byte", byte.class);

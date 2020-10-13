@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author xuxueli 2018-11-30
+ * @author mzj 2018-11-30
  */
 public class BasicJson {
 

@@ -19,14 +19,16 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.timeout.IdleStateHandler;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.TimeUnit;
 
 /**
  * netty pooled client
  *
- * @author xuxueli
+ * @author mzj
  */
+@Slf4j
 public class NettyConnectClient extends ConnectClient {
     private static NioEventLoopGroup nioEventLoopGroup;
 
@@ -64,7 +66,7 @@ public class NettyConnectClient extends ConnectClient {
                     @Override
                     public void initChannel(SocketChannel channel) throws Exception {
                         channel.pipeline()
-                                .addLast(new IdleStateHandler(0,0,Beat.BEAT_INTERVAL, TimeUnit.SECONDS))    // beat N, close if fail
+                                .addLast(new IdleStateHandler(0, 0, Beat.BEAT_INTERVAL, TimeUnit.SECONDS))    // beat N, close if fail
                                 .addLast(new NettyEncoder(RpcRequest.class, serializer))
                                 .addLast(new NettyDecoder(RpcResponse.class, serializer))
                                 .addLast(new NettyClientHandler(xxlRpcInvokerFactory, thisClient));
@@ -81,7 +83,7 @@ public class NettyConnectClient extends ConnectClient {
             return;
         }
 
-        logger.debug(">>>>>>>>>>> rpc netty client proxy, connect to server success at host:{}, port:{}", host, port);
+        log.debug(">>>>>>>>>>> rpc netty client proxy, connect to server success at host:{}, port:{}", host, port);
     }
 
 
@@ -98,7 +100,7 @@ public class NettyConnectClient extends ConnectClient {
         if (this.channel != null && this.channel.isActive()) {
             this.channel.close();        // if this.channel.isOpen()
         }
-        logger.debug(">>>>>>>>>>> rpc netty client close.");
+        log.debug(">>>>>>>>>>> rpc netty client close.");
     }
 
 

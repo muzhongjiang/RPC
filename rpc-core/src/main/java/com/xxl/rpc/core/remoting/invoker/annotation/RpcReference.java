@@ -5,7 +5,7 @@ import com.xxl.rpc.core.remoting.invoker.route.LoadBalance;
 import com.xxl.rpc.core.remoting.net.Client;
 import com.xxl.rpc.core.remoting.net.impl.netty.client.NettyClient;
 import com.xxl.rpc.core.serialize.Serializer;
-import com.xxl.rpc.core.serialize.impl.HessianSerializer;
+import com.xxl.rpc.core.serialize.impl.JavaSerializer;
 
 import java.lang.annotation.*;
 
@@ -20,7 +20,7 @@ import java.lang.annotation.*;
 public @interface RpcReference {
 
     Class<? extends Client> client() default NettyClient.class;
-    Class<? extends Serializer> serializer() default HessianSerializer.class;
+    Class<? extends Serializer> serializer() default JavaSerializer.class;
     CallType callType() default CallType.SYNC;
     LoadBalance loadBalance() default LoadBalance.ROUND;
 

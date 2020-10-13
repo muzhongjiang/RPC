@@ -4,16 +4,16 @@ import com.xxl.rpc.core.remoting.net.params.Beat;
 import com.xxl.rpc.core.remoting.net.params.RpcRequest;
 import com.xxl.rpc.core.remoting.net.params.RpcResponse;
 import com.xxl.rpc.core.remoting.provider.RpcProviderFactory;
-import com.xxl.rpc.core.util.ThrowableUtil;
 import com.xxl.rpc.core.util.RpcException;
+import com.xxl.rpc.core.util.ThrowableUtil;
 import io.netty.buffer.ByteBufUtil;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.*;
 import io.netty.handler.timeout.IdleStateEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.ThreadPoolExecutor;
 
@@ -21,19 +21,15 @@ import java.util.concurrent.ThreadPoolExecutor;
 /**
  * netty_http
  *
- * @author xuxueli 2015-11-24 22:25:15
+ * @author mzj 2015-11-24 22:25:15
  */
+@Slf4j
+@AllArgsConstructor
 public class NettyHttpServerHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
-    private static final Logger logger = LoggerFactory.getLogger(NettyHttpServerHandler.class);
-
 
     private RpcProviderFactory xxlRpcProviderFactory;
     private ThreadPoolExecutor serverHandlerPool;
 
-    public NettyHttpServerHandler(final RpcProviderFactory xxlRpcProviderFactory, final ThreadPoolExecutor serverHandlerPool) {
-        this.xxlRpcProviderFactory = xxlRpcProviderFactory;
-        this.serverHandlerPool = serverHandlerPool;
-    }
 
     @Override
     protected void channelRead0(final ChannelHandlerContext ctx, FullHttpRequest msg) throws Exception {
@@ -83,7 +79,7 @@ public class NettyHttpServerHandler extends SimpleChannelInboundHandler<FullHttp
 
                 // filter beat
                 if (Beat.BEAT_ID.equalsIgnoreCase(xxlRpcRequest.getRequestId())){
-                    logger.debug(">>>>>>>>>>> rpc provider netty_http server read beat-ping.");
+                    log.debug(">>>>>>>>>>> rpc provider netty_http server read beat-ping.");
                     return;
                 }
 
@@ -97,7 +93,7 @@ public class NettyHttpServerHandler extends SimpleChannelInboundHandler<FullHttp
                 writeResponse(ctx, keepAlive, responseBytes);
             }
         } catch (Exception e) {
-            logger.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
 
             // response error
             RpcResponse xxlRpcResponse = new RpcResponse();
@@ -133,7 +129,7 @@ public class NettyHttpServerHandler extends SimpleChannelInboundHandler<FullHttp
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        logger.error(">>>>>>>>>>> rpc provider netty_http server caught exception", cause);
+        log.error(">>>>>>>>>>> rpc provider netty_http server caught exception", cause);
         ctx.close();
     }
 
@@ -141,7 +137,7 @@ public class NettyHttpServerHandler extends SimpleChannelInboundHandler<FullHttp
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
         if (evt instanceof IdleStateEvent){
             ctx.channel().close();      // beat 3N, close if idle
-            logger.debug(">>>>>>>>>>> rpc provider netty_http server close an idle channel.");
+            log.debug(">>>>>>>>>>> rpc provider netty_http server close an idle channel.");
         } else {
             super.userEventTriggered(ctx, evt);
         }

@@ -7,7 +7,7 @@ import com.xxl.rpc.core.remoting.invoker.call.RpcInvokeFuture;
 import com.xxl.rpc.core.remoting.invoker.reference.RpcReferenceBean;
 import com.xxl.rpc.core.remoting.invoker.route.LoadBalance;
 import com.xxl.rpc.core.remoting.net.impl.netty.client.NettyClient;
-import com.xxl.rpc.core.serialize.impl.HessianSerializer;
+import com.xxl.rpc.core.serialize.impl.JavaSerializer;
 import com.xxl.rpc.sample.api.DemoService;
 import com.xxl.rpc.sample.api.dto.UserDTO;
 
@@ -15,7 +15,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author xuxueli 2018-10-21 20:48:40
+ * @author mzj 2018-10-21 20:48:40
  */
 public class RpcClientAplication {
 
@@ -45,7 +45,7 @@ public class RpcClientAplication {
         // init client
         RpcReferenceBean referenceBean = new RpcReferenceBean()
                 .setClient(NettyClient.class)
-                .setSerializer(HessianSerializer.class)
+                .setSerializer(JavaSerializer.class)
                 .setCallType(CallType.SYNC)
                 .setLoadBalance(LoadBalance.ROUND)
                 .setIface(DemoService.class)
@@ -71,7 +71,7 @@ public class RpcClientAplication {
         // client
         RpcReferenceBean referenceBean = new RpcReferenceBean()
                 .setClient(NettyClient.class)
-                .setSerializer(HessianSerializer.class)
+                .setSerializer(JavaSerializer.class)
                 .setCallType(CallType.FUTURE) //
                 .setLoadBalance(LoadBalance.ROUND)
                 .setIface(DemoService.class)
@@ -101,7 +101,7 @@ public class RpcClientAplication {
         // client
         RpcReferenceBean referenceBean = new RpcReferenceBean()
                 .setClient(NettyClient.class)
-                .setSerializer(HessianSerializer.class)
+                .setSerializer(JavaSerializer.class)
                 .setCallType(CallType.CALLBACK) //
                 .setLoadBalance(LoadBalance.ROUND)
                 .setIface(DemoService.class)
@@ -139,7 +139,7 @@ public class RpcClientAplication {
         // client
         RpcReferenceBean referenceBean = new RpcReferenceBean()
                 .setClient(NettyClient.class)
-                .setSerializer(HessianSerializer.class)
+                .setSerializer(JavaSerializer.class)
                 .setCallType(CallType.ONEWAY) //
                 .setLoadBalance(LoadBalance.ROUND)
                 .setIface(DemoService.class)
