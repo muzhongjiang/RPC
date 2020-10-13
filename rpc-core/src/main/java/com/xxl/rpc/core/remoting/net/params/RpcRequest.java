@@ -6,8 +6,6 @@ import java.io.Serializable;
 
 /**
  * request
- *
- * @author mzj 2015-10-29 19:39:12
  */
 @Data
 public class RpcRequest implements Serializable{
@@ -22,6 +20,5 @@ public class RpcRequest implements Serializable{
     private Object[] parameters;
 
 	private String version;
-
 
 }

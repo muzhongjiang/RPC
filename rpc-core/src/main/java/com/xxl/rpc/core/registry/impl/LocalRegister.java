@@ -25,7 +25,7 @@ public class LocalRegister extends Register {
      */
     @Override
     public void start(Map<String, String> param) {
-        registryData = new HashMap<String, TreeSet<String>>();
+        registryData = new HashMap<>();
     }
 
     @Override

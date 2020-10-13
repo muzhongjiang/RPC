@@ -30,17 +30,13 @@ public class RpcSpringProviderFactory extends RpcProviderFactory implements Appl
                     throw new RpcException("rpc, service(RpcService) must inherit interface.");
                 }
                 // add service
-                RpcService xxlRpcService = serviceBean.getClass().getAnnotation(RpcService.class);
-
+                RpcService rpcService = serviceBean.getClass().getAnnotation(RpcService.class);
                 String iface = serviceBean.getClass().getInterfaces()[0].getName();
-                String version = xxlRpcService.version();
+                String version = rpcService.version();
 
                 super.addService(iface, version, serviceBean);
             }
         }
-
-        // TODO，addServices by api + prop
-
     }
 
     @Override

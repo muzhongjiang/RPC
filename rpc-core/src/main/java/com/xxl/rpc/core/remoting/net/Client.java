@@ -4,8 +4,7 @@ import com.xxl.rpc.core.remoting.invoker.reference.RpcReferenceBean;
 import com.xxl.rpc.core.remoting.net.params.RpcRequest;
 
 /**
- * i client
- * @author mzj 2015-11-24 22:18:10
+ *  client
  */
 public abstract class Client {
 

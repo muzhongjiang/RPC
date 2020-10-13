@@ -56,7 +56,7 @@ public abstract class ConnectClient {
             synchronized (ConnectClient.class) {
                 if (connectClientMap == null) {
                     // init
-                    connectClientMap = new ConcurrentHashMap<String, ConnectClient>();
+                    connectClientMap = new ConcurrentHashMap<>();
                     // stop callback
                     xxlRpcReferenceBean.getInvokerFactory().addStopCallBack(new BaseCallback() {
                         @Override
