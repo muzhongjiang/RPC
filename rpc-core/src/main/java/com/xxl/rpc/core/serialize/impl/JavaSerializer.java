@@ -7,7 +7,9 @@ import lombok.val;
 
 import java.io.*;
 
-
+/**
+ * 默认使用Java序列化
+ */
 public class JavaSerializer extends Serializer {
 
     @Override
